@@ -19,7 +19,7 @@ In addition to these, there are two more crucial interfaces:
 
 Starting from a bare machine with no software, we require external mechanisms to:
 1. Write kernel modules and convert them into XSM executable programs.
-2. Store these modules on the machine's disk so they can be loaded into memory and executed when the machine is powered on.
+2. Store these modules on the machine's disk so that they can be loaded into memory and executed when the machine is powered on.
 
 For these tasks, we are provided with:
 - **SPL Compiler**: A cross compiler for the System Programming Language (SPL), an enriched XSM assembly language. We will write OS modules in SPL, compile them in our host (Linux/Unix) environment, and generate XSM target programs using this compiler.
