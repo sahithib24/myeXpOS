@@ -1,0 +1,43 @@
+[PROCESS_TABLE + ([SYSTEM_STATUS_TABLE +1]*16) + 9] =5;
+
+alias USER_SP R0;
+USER_SP = SP;
+
+[PROCESS_TABLE + ([SYSTEM_STATUS_TABLE +1]*16) + 13] =SP;
+
+SP=[PROCESS_TABLE + ([SYSTEM_STATUS_TABLE +1]*16) + 11]*512 -1; 
+
+alias PhysicalAddress R1;
+
+PhysicalAddress =  [PTBR + 2*(USER_SP-4)/512]*512 +  (USER_SP-4)%512 ;
+
+alias Filedescriptor R2;
+
+Filedescriptor = [PhysicalAddress];
+
+if (Filedescriptor!= -2)
+
+then 
+
+   alias PhysicalAddressret R3;
+   
+   PhysicalAddressret = [PTBR + 2*(USER_SP-1)/512]*512 +  (USER_SP-1)%512 ;
+   [PhysicalAddressret] = -1;
+
+else
+
+   alias value R4;
+   value = [ [PTBR + 2*(USER_SP-3)/512]*512 +  (USER_SP-3)%512 ];
+   print value;
+   
+   alias PhysicalAddressret R4;
+   
+   PhysicalAddressret = ([PTBR + 2*(USER_SP-1)/512]*512) +  (USER_SP-1)%512 ;
+   [PhysicalAddressret] = 0;
+
+endif;
+
+
+ SP = USER_SP;
+ [PROCESS_TABLE + ([SYSTEM_STATUS_TABLE +1]*16) + 9] =0;
+ireturn;

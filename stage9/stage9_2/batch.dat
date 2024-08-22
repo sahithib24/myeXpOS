@@ -1,0 +1,6 @@
+load --os $HOME/myexpos/stage9/stage9_2/os_startup9.xsm
+load --init $HOME/myexpos/stage9/stage9_2/squares.xsm
+load --exhandler $HOME/myexpos/stage9/stage9_2/excep.xsm
+load --int=10 $HOME/myexpos/stage9/stage9_2/haltprog.xsm
+load --int=timer $HOME/myexpos/stage9/stage9_2/timer92.xsm
+load --library $HOME/myexpos/expl/library.lib
