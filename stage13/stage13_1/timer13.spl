@@ -31,7 +31,7 @@ endif;
 alias new_process_table R3;
 new_process_table = PROCESS_TABLE + newPID * 16;
 
-//Set back Kernel SP, PTBR , PTLR
+
 SP =  [new_process_table + 11] * 512 + [new_process_table + 12] ;
 PTBR = [new_process_table + 14];
 PTLR = [new_process_table + 15];

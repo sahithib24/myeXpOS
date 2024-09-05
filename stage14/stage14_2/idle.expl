@@ -1,0 +1,21 @@
+int main()
+{
+  decl
+  
+  int t;
+  
+  enddecl
+  
+begin
+  
+  while(1==1) do
+  
+   t=1;
+   
+  endwhile;
+  
+  return 0;
+  
+end
+  
+}

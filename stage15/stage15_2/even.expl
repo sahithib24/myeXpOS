@@ -1,0 +1,31 @@
+int main()
+{
+decl
+
+int i,r,t;
+
+enddecl
+
+begin
+
+i=1;
+
+while(i<=100) do
+
+r = i%2;
+
+if(r==0) then
+
+  t =exposcall("Write", -2 , i);
+
+endif;
+
+i=i+1;
+
+endwhile;
+
+return 0;
+
+end
+
+}

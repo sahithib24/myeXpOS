@@ -1,0 +1,12 @@
+load --library $HOME/myexpos/expl/library.lib
+load --os $HOME/myexpos/stage14/stage14_1/os_startup14.xsm
+load --init $HOME/myexpos/stage14/stage14_1/init.xsm
+load --exhandler $HOME/myexpos/stage14/stage14_1/excep.xsm
+load --int=10 $HOME/myexpos/stage14/stage14_1/haltprog.xsm
+load --int=timer $HOME/myexpos/stage14/stage14_1/timer14.xsm
+load --int=7 $HOME/myexpos/stage14/stage14_1/write14.xsm
+load --idle $HOME/myexpos/stage14/stage14_1/idle.xsm
+load --module 7 $HOME/myexpos/stage14/stage14_1/boot.xsm
+load --module 5 $HOME/myexpos/stage14/stage14_1/scheduler.xsm
+
+
