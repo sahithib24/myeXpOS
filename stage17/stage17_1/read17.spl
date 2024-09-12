@@ -1,0 +1,46 @@
+//for systemcall  context is already saved in userstack
+//change mode
+[PROCESS_TABLE + [SYSTEM_STATUS_TABLE + 1]*16 + 9] = 7;
+
+alias USER_SP R0;
+USER_SP = SP;
+
+//saving user stack
+[PROCESS_TABLE + [SYSTEM_STATUS_TABLE + 1]*16 + 13]= SP;
+SP= [PROCESS_TABLE + [SYSTEM_STATUS_TABLE + 1]*16 + 11]*512 -1;
+
+
+alias physicaladdress R1;
+
+physicaladdress = [PTBR + 2*(USER_SP-4)/512]*512 + ((USER_SP-4)%512);
+
+alias filedescriptor R2;
+filedescriptor = [physicaladdress];
+
+if(filedescriptor!= -1)  then
+
+physicaladdress = [PTBR + 2*(USER_SP-1)/512]*512 + ((USER_SP-1)%512);
+[physicaladdress]= -1;
+
+else 
+
+multipush(R0,R1,R2);
+R3 = [[PTBR + 2*(USER_SP-3)/512]*512 + ((USER_SP-3)%512)];
+R2 = [SYSTEM_STATUS_TABLE + 1];
+R1 = 4;
+
+call MOD_4;
+
+multipop(R0,R1,R2);
+
+
+physicaladdress = [PTBR + 2*(USER_SP-1)/512]*512 + ((USER_SP-1)%512);
+[physicaladdress]= 0;
+
+endif;
+
+//change mode flag to 0
+
+[PROCESS_TABLE + [SYSTEM_STATUS_TABLE + 1]*16 + 9] = 0;
+SP = [PROCESS_TABLE + [SYSTEM_STATUS_TABLE + 1]*16 + 13];
+ireturn;
